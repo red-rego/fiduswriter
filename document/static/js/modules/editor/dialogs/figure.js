@@ -336,7 +336,7 @@ export class FigureDialog {
             event => {
                 event.preventDefault()
                 this.aligned = el.id.split('-')[2]
-                this.setFigureAlignment()
+                this.setFigureRotation()
             }
         ))
 

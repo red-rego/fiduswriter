@@ -276,10 +276,10 @@ export const configureFigureTemplate = ({caption, dir}) =>
                            Size: ${gettext('75')} %
                         </span></li>
                         <li><span class="fw-pulldown-item" id="figure-width-50">
-                            Size : ${gettext('50')} %
+                            Size: ${gettext('50')} %
                         </span></li>
                        <li><span class="fw-pulldown-item" id="figure-width-25">
-                            Size : ${gettext('25')} %
+                            Size: ${gettext('25')} %
                         </span></li>
                     </ul>
                 </div>
@@ -292,16 +292,16 @@ export const configureFigureTemplate = ({caption, dir}) =>
                         style="left: 150px;">
                     <ul id="figure-category-list">
                         <li><span class="fw-pulldown-item" id="figure-rotate-0">
-                           Size: ${gettext('0')} %
+                           Rotate: ${gettext('0')} %
                         </span></li>
                         <li><span class="fw-pulldown-item" id="figure-rotate-90">
-                           Size: ${gettext('90')} %
+                           Rotate: ${gettext('90')} %
                         </span></li>
                         <li><span class="fw-pulldown-item" id="figure-rotate-180">
-                            Size : ${gettext('180')} %
+                            Rotate: ${gettext('180')} %
                         </span></li>
                        <li><span class="fw-pulldown-item" id="figure-rotate-270">
-                            Size : ${gettext('270')} %
+                            Rotate: ${gettext('270')} %
                         </span></li>
                     </ul>
                 </div>

@@ -58,6 +58,20 @@ class ImageView {
                 this.dom.classList.add('image-width-25')
         }
 
+        switch (this.node.attrs.rotate) {
+            case '0':
+                this.dom.classList.add('image-rotate-0')
+                break
+            case '90':
+                this.dom.classList.add('image-rotate-90')
+                break
+            case '180':
+                this.dom.classList.add('image-rotate-180')
+                break
+            default:
+                this.dom.classList.add('image-rotate-270')
+        }
+
         if (this.node.attrs.image !== false) {
             this.dom.appendChild(document.createElement("div"))
             if (this.node.type.schema.cached.imageDB) {
