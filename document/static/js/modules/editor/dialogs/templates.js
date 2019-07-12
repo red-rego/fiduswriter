@@ -283,6 +283,28 @@ export const configureFigureTemplate = ({caption, dir}) =>
                         </span></li>
                     </ul>
                 </div>
+                <div id="figure-rotate-btn" class="fw-button fw-light fw-large">
+                    <input type="hidden" id="figure-rotate" />
+                    <label></label>
+                    <span class="fa fa-caret-down"></span>
+                </div>
+                <div id="figure-rotate-pulldown" class="fw-pulldown fw-left"
+                        style="left: 150px;">
+                    <ul id="figure-category-list">
+                        <li><span class="fw-pulldown-item" id="figure-rotate-0">
+                           Size: ${gettext('0')} %
+                        </span></li>
+                        <li><span class="fw-pulldown-item" id="figure-rotate-90">
+                           Size: ${gettext('90')} %
+                        </span></li>
+                        <li><span class="fw-pulldown-item" id="figure-rotate-180">
+                            Size : ${gettext('180')} %
+                        </span></li>
+                       <li><span class="fw-pulldown-item" id="figure-rotate-270">
+                            Size : ${gettext('270')} %
+                        </span></li>
+                    </ul>
+                </div>
             </div>
             <div class="figure-preview">
                 <div class="inner-figure-preview"></div>

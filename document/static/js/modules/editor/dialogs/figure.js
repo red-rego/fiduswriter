@@ -26,6 +26,7 @@ export class FigureDialog {
         this.figureCategory = 'figure'
         this.aligned = 'center'
         this.width = "50"
+        this.rotate = "0"
         this.equation = ''
         this.node = this.editor.currentView.state.selection.node
         this.submitMessage = gettext('Insert')
@@ -164,6 +165,11 @@ export class FigureDialog {
 
     }
 
+    setFigureRotation() {
+        this.dialog.dialogEl.querySelector('#figure-rotate-btn label').innerHTML =
+            document.getElementById(`figure-rotate-${this.rotate}`).innerText
+    }
+
     submitForm() {
         const captionInput = this.dialog.dialogEl.querySelector('input[name=figure-caption]')
         this.caption = captionInput.value
@@ -186,7 +192,8 @@ export class FigureDialog {
             this.caption === this.node.attrs.caption &&
             this.figureCategory === this.node.attrs.figureCategory &&
             this.aligned === this.node.attrs.aligned &&
-            this.width === this.node.attrs.width
+            this.width === this.node.attrs.width &&
+            this.rotate === this.node.attrs.rotate
         ) {
             // The figure has not been changed, just close the dialog
             this.dialog.close()
@@ -205,6 +212,7 @@ export class FigureDialog {
                 equation: this.equation,
                 image: this.imgId,
                 aligned: this.aligned,
+                rotate: this.rotate,
                 width: this.width,
                 figureCategory: this.figureCategory,
                 caption: this.caption,
@@ -229,6 +237,7 @@ export class FigureDialog {
             this.figureCategory = this.node.attrs.figureCategory
             this.caption = this.node.attrs.caption
             this.aligned = this.node.attrs.aligned
+            this.rotate = this.node.attrs.rotate
             this.width = this.node.attrs.width
             buttons.push({
                 text: gettext('Remove'),
@@ -260,6 +269,7 @@ export class FigureDialog {
             body: configureFigureTemplate({
                 caption: this.caption,
                 aligned: this.aligned,
+                rotate: this.rotate,
                 width: this.width,
                 dir: this.editor.docInfo.dir
             }),
@@ -283,6 +293,7 @@ export class FigureDialog {
         this.setFigureLabel()
         this.setFigureAlignment()
         this.setFigureWidth()
+        this.setFigureRotation()
 
         if (this.imgId) {
             this.layoutImagePreview()
@@ -305,7 +316,22 @@ export class FigureDialog {
             document.getElementById('figure-width-btn'),
             document.getElementById('figure-width-pulldown')
         )
+
+        addDropdownBox(
+            document.getElementById('figure-rotate-btn'),
+            document.getElementById('figure-rotate-pulldown')
+        )
+
         document.querySelectorAll('#figure-alignment-pulldown li span').forEach(el => el.addEventListener(
+            'click',
+            event => {
+                event.preventDefault()
+                this.aligned = el.id.split('-')[2]
+                this.setFigureAlignment()
+            }
+        ))
+
+         document.querySelectorAll('#figure-rotate-pulldown li span').forEach(el => el.addEventListener(
             'click',
             event => {
                 event.preventDefault()

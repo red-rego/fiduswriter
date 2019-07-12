@@ -136,6 +136,8 @@ export const figure = {
         track: {default: []},
         aligned: {default: 'center'},
         width:{default:"100"},
+        rotate:{default:"0"}
+
         //height: {default:"50"},
     },
     parseDOM: [{
@@ -151,6 +153,7 @@ export const figure = {
                 track: parseTracks(dom.dataset.track),
                 aligned: dom.dataset.aligned,
                 width: dom.dataset.width,
+                rotate: dom.dataset.rotate
 
             }
         }
@@ -164,6 +167,7 @@ export const figure = {
         dom.id = node.attrs.id
         dom.dataset.aligned = node.attrs.aligned
         dom.dataset.width = node.attrs.width
+        dom.dataset.rotate = node.attrs.rotate
 
         switch (node.attrs.aligned) {
             case 'right':
@@ -192,6 +196,21 @@ export const figure = {
             default:
                 dom.classList.add('image-width-25')
         }
+
+         switch (node.attrs.rotate) {
+            case '0':
+                dom.classList.add('image-rotate-0')
+                break
+            case '90':
+                dom.classList.add('image-rotate-90')
+                break
+            case '180':
+                dom.classList.add('image-rotate-180')
+                break
+            default:
+                dom.classList.add('image-rotate-270')
+        }
+
 
         if (node.attrs.track && node.attrs.track.length) {
             dom.dataset.track = JSON.stringify(node.attrs.track)
