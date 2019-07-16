@@ -2,7 +2,7 @@ import {Plugin, PluginKey} from "prosemirror-state"
 import {DOMSerializer} from "prosemirror-model"
 import {FigureDialog} from "../dialogs"
 import {
-    FIG_CATS, FIGURE, TABLE, PHOTO
+    FIG_CATS
 } from "../../schema/i18n"
 
 const key = new PluginKey('figureMenu')
