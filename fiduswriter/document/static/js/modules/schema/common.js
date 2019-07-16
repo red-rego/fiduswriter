@@ -150,7 +150,6 @@ export const figure = {
         }
     }],
     toDOM(node) {
-    console.log(node)
         const dom = document.createElement('figure')
         dom.dataset.equation = node.attrs.equation
         dom.dataset.image = node.attrs.image

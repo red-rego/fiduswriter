@@ -54,7 +54,7 @@ export const figureMenuPlugin = function(options) {
             let user_language = options.editor.view.state.doc.firstChild.attrs.language
              Array.from(document.querySelectorAll('*[class^="figure-cat-"] ')).forEach(el => el.innerHTML = FIG_CATS[el.dataset.figureCategory][user_language])
              return {
-                update: (view, _prevState) => {
+                update: (_prevState) => {
                     let user_language = options.editor.view.state.doc.firstChild.attrs.language
                     Array.from(document.querySelectorAll('*[class^="figure-cat-"] ')).forEach(el => el.innerHTML = FIG_CATS[el.dataset.figureCategory][user_language])
 
