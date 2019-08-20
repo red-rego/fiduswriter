@@ -359,6 +359,35 @@ const separatorTemplate = ({
     </div>
 </div>`
 
+const fileTemplate = ({
+    id="",
+    title="",
+    optional="false"
+}) =>
+`<div class="doc-part" data-type="file_part">
+    <div class="doc-part-header">
+        ${gettext('File')}
+        <ul class="object-tools right">
+            <li>
+                <span class="link configure">${gettext('Configure')}</span>
+            </li>
+        </ul>
+        <div class="label">
+            ${gettext('ID')} <input type="text" class="id" value="${escapeText(id)}">
+            ${gettext('Title')} <input type="text" class="title" value="${escapeText(title)}">
+        </div>
+    </div>
+    <div class="attrs hidden">
+        <div class="label">${gettext('Optional')}
+            <select class="optional">
+                <option value="false" ${optional==='false' ? "selected" : ""}>${gettext('Obligatory field')}</option>
+                <option value="shown" ${optional==='shown' ? "selected" : ""}>${gettext('Optional, shown by default')}</option>
+                <option value="hidden" ${optional==='hidden' ? "selected" : ""}>${gettext('Optional, not shown by default')}</option>
+            </select>
+        </div>
+    </div>
+</div>`
+
 const tagsTemplate = ({
     id="",
     title="",
@@ -563,6 +592,8 @@ export const templateEditorValueTemplate = ({content}) =>
                 return tocTemplate(docPart.attrs)
             case 'separator_part':
                 return separatorTemplate(docPart.attrs)
+            case 'file_part':
+                return fileTemplate(docPart.attrs)
             default:
                 return ''
         }
@@ -596,6 +627,7 @@ export const documentConstructorTemplate = ({value}) =>
                         ${tableTemplate({})}
                         ${tocTemplate({})}
                         ${separatorTemplate({})}
+                        ${fileTemplate({})}
                     </td>
                     <td class="to-column">
                         <div class="doc-part fixed" data-type="initial">${gettext('Title')}</div>
