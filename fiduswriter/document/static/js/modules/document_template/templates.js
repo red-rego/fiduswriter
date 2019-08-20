@@ -2,6 +2,21 @@ import {escapeText} from "../common"
 import {LANGUAGES, PAPER_SIZES} from "../schema/const"
 
 
+const allowedButtons = ({elements}) =>
+`
+<div class='label'>
+    ${gettext('Allowed Buttons')}
+</div>
+<label>
+    <input type="checkbox" class="elements" value="addFile" ${elements.includes('addFile') ? 'checked' : ''}/>
+    ${gettext('Add Attachment')}
+</label>
+<label>
+    <input type="checkbox" class="elements" value="manageFile" ${elements.includes('manageFile') ? 'checked' : ''}/>
+    ${gettext('Manage Attachment')}
+</label>
+`
+
 const allowedElementsTemplate = ({elements}, footnote=true, table=true) =>
 `<div class="label">
     ${gettext('Allowed elements')}
@@ -362,7 +377,8 @@ const separatorTemplate = ({
 const fileTemplate = ({
     id="",
     title="",
-    optional="false"
+    optional="false",
+    elements=["addFile", "manageFile"],
 }) =>
 `<div class="doc-part" data-type="file_part">
     <div class="doc-part-header">
@@ -385,6 +401,7 @@ const fileTemplate = ({
                 <option value="hidden" ${optional==='hidden' ? "selected" : ""}>${gettext('Optional, not shown by default')}</option>
             </select>
         </div>
+        ${allowedButtons({elements})}
     </div>
 </div>`
 
