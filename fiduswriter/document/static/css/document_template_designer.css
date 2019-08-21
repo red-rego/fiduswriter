@@ -69,6 +69,10 @@ form .aligned ul.object-tools.right {
     background-color: #FFC87B;
 }
 
+.doc-part[data-type="file_part"] {
+    background-color: #D5FF4D;
+}
+
 .doc-part[data-type="tags_part"] {
     background-color: #FFDF7B;
 }

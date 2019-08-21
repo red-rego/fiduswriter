@@ -5,7 +5,7 @@ import {LANGUAGES, PAPER_SIZES} from "../schema/const"
 const allowedButtons = ({elements}) =>
 `
 <div class='label'>
-    ${gettext('Allowed Buttons')}
+    ${gettext('Buttons :-')}
 </div>
 <label>
     <input type="checkbox" class="elements" value="addFile" ${elements.includes('addFile') ? 'checked' : ''}/>
@@ -14,6 +14,26 @@ const allowedButtons = ({elements}) =>
 <label>
     <input type="checkbox" class="elements" value="manageFile" ${elements.includes('manageFile') ? 'checked' : ''}/>
     ${gettext('Manage Attachment')}
+</label>
+
+<div class='label'>
+    ${gettext('Allowed File Types :-')}
+</div>
+<label>
+    <input type="checkbox" class="elements" value="addFile" ${elements.includes('pdf') ? 'checked' : ''}/>
+    ${gettext('PDF(.pdf)')}
+</label>
+<label>
+    <input type="checkbox" class="elements" value="manageFile" ${elements.includes('txt') ? 'checked' : ''}/>
+    ${gettext('Text(.txt)')}
+</label>
+<label>
+    <input type="checkbox" class="elements" value="manageFile" ${elements.includes('doc') ? 'checked' : ''}/>
+    ${gettext('Document(.doc)')}
+</label>
+<label>
+    <input type="checkbox" class="elements" value="manageFile" ${elements.includes('img') ? 'checked' : ''}/>
+    ${gettext('Image(.jpg, .png, .jpeg)')}
 </label>
 `
 
@@ -378,7 +398,7 @@ const fileTemplate = ({
     id="",
     title="",
     optional="false",
-    elements=["addFile", "manageFile"],
+    elements=["addFile", "manageFile", "pdf", "txt", "doc", "img"],
 }) =>
 `<div class="doc-part" data-type="file_part">
     <div class="doc-part-header">
