@@ -169,7 +169,7 @@ export function adjustDocToTemplate(miniDoc, template, documentStyles, citationS
                 )
                 if (removedElements.length || removedMarks.length) {
                     cleanNode(newNode, removedElements, removedMarks)
-                    if (!newNode.content && ['richtext_part', 'heading_part'].includes(part.type)) {
+                    if (!newNode.content && ['richtext_part', 'heading_part', 'file_upload_part'].includes(part.type)) {
                         newNode.content = [{type: part.attrs.elements[0]}]
                     } else if (!newNode.content && part.type === 'table_part') {
                         newNode.content = [

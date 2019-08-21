@@ -100,6 +100,46 @@ richtextMenuContent[1][0].content.push(blockTypeItem(type, {
         deleteTable(state, dispatch)
     }
 }))
+export const fileUploadPartSchema = new Schema({
+    nodes: docSchema.spec.nodes.update('doc', {content: 'file_upload_part'}),
+    marks: docSchema.spec.marks
+})
+
+export const fileUploadMenuContent = buildMenuItems(fileUploadPartSchema).fullMenu
+for (let i = 1; i <= 6; i++) {
+    const type = fileUploadPartSchema.nodes[`heading${i}`]
+    fileUploadMenuContent[1][1].content.push(blockTypeItem(type, {
+        title: gettext("Change to heading ") + i,
+        label: gettext("Heading level ") + i
+    }))
+}
+
+const type2 = fileUploadPartSchema.nodes['table']
+fileUploadMenuContent[1][0].content.push(blockTypeItem(type2, {
+    title: gettext("Insert Table"),
+    label:  gettext("Insert Table"),
+    enable(state) {
+        return !findTable(state)
+    },
+    run(state, dispatch) {
+        const table = {type2: 'table', content: [{type2: 'table_row', content: [{type2: 'table_cell', content: [{type2: 'paragraph'}]}]}]}
+        const schema = state.schema
+        dispatch(state.tr.replaceSelectionWith(
+            schema.nodeFromJSON(table))
+        )
+    }
+}))
+
+fileUploadMenuContent[1][0].content.push(blockTypeItem(type, {
+    title: gettext("Delete Table"),
+    label:  gettext("Delete Table"),
+    enable(state) {
+        return findTable(state)
+    },
+    run(state, dispatch) {
+        deleteTable(state, dispatch)
+    }
+}))
 
 export const tablePartSchema = new Schema({
     nodes: docSchema.spec.nodes.update('doc', {content: 'table_part'}).update('table_row', {
@@ -138,6 +178,8 @@ const tableMenu = [
 tableMenuContent.splice(2, 0, [new Dropdown(tableMenu, {label: gettext("Table")})])
 
 richtextMenuContent.splice(2, 0, [new Dropdown(tableMenu, {label: gettext("Table")})])
+
+fileUploadMenuContent.splice(2, 0, [new Dropdown(tableMenu, {label: gettext("Table")})])
 
 export const headingPartSchema = new Schema({
     nodes: docSchema.spec.nodes.update('doc', {content: 'heading_part'}).remove('horizontal_rule').remove('paragraph').remove('code_block'),

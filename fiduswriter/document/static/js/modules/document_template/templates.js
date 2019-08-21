@@ -365,6 +365,93 @@ const richtextTemplate = ({
 </div>`
 
 
+
+const fileUploadTemplate = ({
+    id="",
+    title="",
+    elements=["paragraph", "heading1", "heading2", "heading3", "heading4", "heading5", "heading6", "figure", "ordered_list", "bullet_list", "horizontal_rule", "equation", "citation", "blockquote", "footnote"],
+    marks=["strong", "em", "underline", "link"],
+    locking="false",
+    optional="false",
+    language=false,
+    metadata=false
+}) => `<div class="doc-part" data-type="file_upload_part">
+    <div class="doc-part-header">
+        ${gettext('File Upload')}
+        <ul class="object-tools right">
+            <li>
+                <span class="link configure">${gettext('Configure')}</span>
+            </li>
+        </ul>
+        <div class="label">
+            ${gettext('ID')} <input type="text" class="id" value="${escapeText(id)}">
+            ${gettext('Title')} <input type="text" class="title" value="${escapeText(title)}">
+        </div>
+    </div>
+    <div class="attrs hidden">
+        <div class="label">${gettext('Optional')}
+            <select class="optional">
+                <option value="false" ${optional==='false' ? "selected" : ""}>${gettext('Obligatory field')}</option>
+                <option value="shown" ${optional==='shown' ? "selected" : ""}>${gettext('Optional, shown by default')}</option>
+                <option value="hidden" ${optional==='hidden' ? "selected" : ""}>${gettext('Optional, not shown by default')}</option>
+            </select>
+        </div>
+        ${allowedButtons({elements})}
+    </div>
+    <div class="attrs hidden" style="display:none;">
+        <div class="label">${gettext('Metadata function')}
+            <select class="metadata">
+                <option value="false" ${metadata===false ? "selected" : ""}>${gettext('None')}</option>
+                <option value="abstract" ${metadata==='abstract' ? "selected" : ""}>${gettext('Abstract')}</option>
+                <option value="cases" ${metadata==='cases' ? "selected" : ""}>${gettext('Cases/Case Reports')}</option>
+                <option value="conclusions" ${metadata==='conclusions' ? "selected" : ""}>${gettext('Conclusions/Comment')}</option>
+                <option value="discussion" ${metadata==='discussion' ? "selected" : ""}>${gettext('Discussion/Interpretation')}</option>
+                <option value="intro" ${metadata==='intro' ? "selected" : ""}>${gettext('Introduction/Synopsis')}</option>
+                <option value="materials" ${metadata==='materials' ? "selected" : ""}>${gettext('Materials')}</option>
+                <option value="methods" ${metadata==='methods' ? "selected" : ""}>${gettext('Methods/Methodology/Procedures')}</option>
+                <option value="results" ${metadata==='results' ? "selected" : ""}>${gettext('Results/Statement of Findings')}</option>
+                <option value="subjects" ${metadata==='subjects' ? "selected" : ""}>${gettext('Subjects/Participants/Patients')}</option>
+                <option value="supplementary-material" ${metadata==='supplementary-material' ? "selected" : ""}>${gettext('Supplementary materials')}</option>
+            </select>
+        </div>
+        <div class="label">${gettext('Locking')}
+            <select class="locking">
+                <option value="false" ${locking==='false' ? "selected" : ""}>${gettext('User can change contents')}</option>
+                <option value="fixed" ${locking==='fixed' ? "selected" : ""}>${gettext('User can not change contents')}</option>
+                <option value="start" ${locking==='start' ? "selected" : ""}>${gettext('User can only add content')}</option>
+            </select>
+        </div>
+
+
+
+
+
+        
+        ${allowedElementsTemplate({elements})}
+        ${allowedMarksTemplate({marks})}
+        <div class="label">${gettext('Language')}
+            <select class="language">
+                <option value="false" ${language===false ? "selected" : ""}>${gettext('Document language')}</option>
+                ${
+                    LANGUAGES.map(([code, name]) =>
+                        `<option value="${code}" ${language===code ? "selected" : ""}>${name}</option>`
+                    ).join('')
+                }
+            </select>
+        </div>
+        <div>
+            <div class="label">${gettext('Initial content')}</div>
+            <div class="initial"></div>
+        </div>
+        <div>
+            <div class="label">${gettext('Instructions')}</div>
+            <div class="instructions"></div>
+        </div>
+    </div>
+</div>`
+
+
+
 const separatorTemplate = ({
     id="",
     title="",
@@ -621,6 +708,8 @@ export const templateEditorValueTemplate = ({content}) =>
                 return contributorsTemplate(docPart.attrs)
             case 'richtext_part':
                 return richtextTemplate(docPart.attrs)
+            case 'file_upload_part':
+                return fileUploadTemplate(docPart.attrs)
             case 'tags_part':
                 return tagsTemplate(docPart.attrs)
             case 'table_part':
@@ -660,6 +749,7 @@ export const documentConstructorTemplate = ({value}) =>
                         ${headingTemplate({})}
                         ${contributorsTemplate({})}
                         ${richtextTemplate({})}
+                        ${fileUploadTemplate({})}
                         ${tagsTemplate({})}
                         ${tableTemplate({})}
                         ${tocTemplate({})}
