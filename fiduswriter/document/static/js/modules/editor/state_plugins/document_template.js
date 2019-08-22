@@ -43,6 +43,40 @@ export class PartView {
     }
 }
 
+export class PartViewDoubleDiv {
+    constructor(node, view, getPos) {
+        this.node = node
+        this.view = view
+        this.getPos = getPos
+        this.dom = document.createElement('div')
+        this.dom.classList.add('article-part')
+        this.dom.classList.add(`article-${this.node.type.name}`)
+        this.dom.classList.add(`article-${this.node.attrs.id}`)
+        const button_placeholder = document.createElement("div")
+        button_placeholder.classList.add('article-part-button')
+
+        if (node.attrs.hidden) {
+            this.dom.dataset.hidden = true
+        }
+        if (node.attrs.deleted) {
+            this.contentDOM = this.dom.appendChild(document.createElement('div'))
+            addDeletedPartWidget(this.dom, view, getPos)
+        } else {
+            this.contentDOM = this.dom
+        }
+        this.contentDOM = this.dom.appendChild(button_placeholder)
+
+        console.log("DOM :- ", this.dom)
+
+
+    }
+
+    stopEvent() {
+        return false
+    }
+}
+
+
 const key = new PluginKey('documentTemplate')
 export const documentTemplatePlugin = function(options) {
     return new Plugin({
@@ -55,7 +89,7 @@ export const documentTemplatePlugin = function(options) {
                         view,
                         getPos
                     )
-                    this.spec.props.nodeViews['file_upload_part'] = (node, view, getPos) => new PartView(
+                    this.spec.props.nodeViews['file_upload_part'] = (node, view, getPos) => new PartViewDoubleDiv(
                         node,
                         view,
                         getPos

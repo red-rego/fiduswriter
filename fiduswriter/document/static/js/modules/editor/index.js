@@ -199,7 +199,7 @@ export class Editor {
             [tocRenderPlugin, () => ({editor: this})],
         ]
     }
-
+ 
     init() {
         ensureCSS([
             'mathlive.css',

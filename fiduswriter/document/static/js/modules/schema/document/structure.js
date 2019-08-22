@@ -243,6 +243,7 @@ export const separator_part = {
 }
 
 export const file_part = {
+//Proof of Concept only
     marks: "annotation track",
     group: "part",
     defining: true,
