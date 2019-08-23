@@ -242,26 +242,26 @@ export const separator_part = {
     }
 }
 
-export const file_part = {
-//Proof of Concept only
-    marks: "annotation track",
-    group: "part",
-    defining: true,
-    attrs : {
-        id: {
-            default: 'file'
-        }
-    },
-    parseDOM: [{
-        tag: "hr.article-file_part"
-    }],
-    toDOM(node) {
-        const dom = document.createElement('hr')
-        dom.classList.add('article-file_part')
-        dom.classList.add(`article-${node.attrs.id}`)
-        return dom
-    }
-}
+// export const file_part = {
+// //Proof of Concept only
+//     marks: "annotation track",
+//     group: "part",
+//     defining: true,
+//     attrs : {
+//         id: {
+//             default: 'file'
+//         }
+//     },
+//     parseDOM: [{
+//         tag: "hr.article-file_part"
+//     }],
+//     toDOM(node) {
+//         const dom = document.createElement('hr')
+//         dom.classList.add('article-file_part')
+//         dom.classList.add(`article-${node.attrs.id}`)
+//         return dom
+//     }
+// }
 
 export const title = {
     content: "text*",

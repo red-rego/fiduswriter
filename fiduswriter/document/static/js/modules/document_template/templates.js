@@ -20,19 +20,19 @@ const allowedButtons = ({elements}) =>
     ${gettext('Allowed File Types :-')}
 </div>
 <label>
-    <input type="checkbox" class="elements" value="addFile" ${elements.includes('pdf') ? 'checked' : ''}/>
+    <input type="checkbox" class="elements" value="pdf" ${elements.includes('pdf') ? 'checked' : ''}/>
     ${gettext('PDF(.pdf)')}
 </label>
 <label>
-    <input type="checkbox" class="elements" value="manageFile" ${elements.includes('txt') ? 'checked' : ''}/>
+    <input type="checkbox" class="elements" value="txt" ${elements.includes('txt') ? 'checked' : ''}/>
     ${gettext('Text(.txt)')}
 </label>
 <label>
-    <input type="checkbox" class="elements" value="manageFile" ${elements.includes('doc') ? 'checked' : ''}/>
+    <input type="checkbox" class="elements" value="doc" ${elements.includes('doc') ? 'checked' : ''}/>
     ${gettext('Document(.doc)')}
 </label>
 <label>
-    <input type="checkbox" class="elements" value="manageFile" ${elements.includes('img') ? 'checked' : ''}/>
+    <input type="checkbox" class="elements" value="img" ${elements.includes('img') ? 'checked' : ''}/>
     ${gettext('Image(.jpg, .png, .jpeg)')}
 </label>
 `
@@ -323,7 +323,7 @@ const richtextTemplate = ({
                 <option value="materials" ${metadata==='materials' ? "selected" : ""}>${gettext('Materials')}</option>
                 <option value="methods" ${metadata==='methods' ? "selected" : ""}>${gettext('Methods/Methodology/Procedures')}</option>
                 <option value="results" ${metadata==='results' ? "selected" : ""}>${gettext('Results/Statement of Findings')}</option>
-                <option value="subjects" ${metadata==='subjects' ? "selected" : ""}>${gettext('Subjects/Participants/Patients')}</option>
+                <option value="subjects" ${metadata==='subjects' ? "selected" : ""}>${gettext('Subjects/Participants/Patients')}</optaddFileion>
                 <option value="supplementary-material" ${metadata==='supplementary-material' ? "selected" : ""}>${gettext('Supplementary materials')}</option>
             </select>
         </div>
@@ -369,7 +369,7 @@ const richtextTemplate = ({
 const fileUploadTemplate = ({
     id="",
     title="",
-    elements=["paragraph", "heading1", "heading2", "heading3", "heading4", "heading5", "heading6", "figure", "ordered_list", "bullet_list", "horizontal_rule", "equation", "citation", "blockquote", "footnote"],
+    elements=["addFile","paragraph", "heading1", "heading2", "heading3", "heading4", "heading5", "heading6", "figure", "ordered_list", "bullet_list", "horizontal_rule", "equation", "citation", "blockquote", "footnote"],
     marks=["strong", "em", "underline", "link"],
     locking="false",
     optional="false",
@@ -457,8 +457,8 @@ const separatorTemplate = ({
     title="",
     optional="false"
 }) =>
-`<div class="doc-part" data-type="separator_part">
-    <div class="doc-part-header">
+`<div class="doc-part" data-type=manageFile
+    <div class="doc-part-header">manageFile
         ${gettext('Separator')}
         <ul class="object-tools right">
             <li>
@@ -478,37 +478,6 @@ const separatorTemplate = ({
                 <option value="hidden" ${optional==='hidden' ? "selected" : ""}>${gettext('Optional, not shown by default')}</option>
             </select>
         </div>
-    </div>
-</div>`
-
-const fileTemplate = ({
-    id="",
-    title="",
-    optional="false",
-    elements=["addFile", "manageFile", "pdf", "txt", "doc", "img"],
-}) =>
-`<div class="doc-part" data-type="file_part">
-    <div class="doc-part-header">
-        ${gettext('File')}
-        <ul class="object-tools right">
-            <li>
-                <span class="link configure">${gettext('Configure')}</span>
-            </li>
-        </ul>
-        <div class="label">
-            ${gettext('ID')} <input type="text" class="id" value="${escapeText(id)}">
-            ${gettext('Title')} <input type="text" class="title" value="${escapeText(title)}">
-        </div>
-    </div>
-    <div class="attrs hidden">
-        <div class="label">${gettext('Optional')}
-            <select class="optional">
-                <option value="false" ${optional==='false' ? "selected" : ""}>${gettext('Obligatory field')}</option>
-                <option value="shown" ${optional==='shown' ? "selected" : ""}>${gettext('Optional, shown by default')}</option>
-                <option value="hidden" ${optional==='hidden' ? "selected" : ""}>${gettext('Optional, not shown by default')}</option>
-            </select>
-        </div>
-        ${allowedButtons({elements})}
     </div>
 </div>`
 
@@ -718,8 +687,6 @@ export const templateEditorValueTemplate = ({content}) =>
                 return tocTemplate(docPart.attrs)
             case 'separator_part':
                 return separatorTemplate(docPart.attrs)
-            case 'file_part':
-                return fileTemplate(docPart.attrs)
             default:
                 return ''
         }
@@ -754,7 +721,7 @@ export const documentConstructorTemplate = ({value}) =>
                         ${tableTemplate({})}
                         ${tocTemplate({})}
                         ${separatorTemplate({})}
-                        ${fileTemplate({})}
+
                     </td>
                     <td class="to-column">
                         <div class="doc-part fixed" data-type="initial">${gettext('Title')}</div>

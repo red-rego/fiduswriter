@@ -52,9 +52,26 @@ export class PartViewDoubleDiv {
         this.dom.classList.add('article-part')
         this.dom.classList.add(`article-${this.node.type.name}`)
         this.dom.classList.add(`article-${this.node.attrs.id}`)
-        const button_placeholder = document.createElement("div")
-        button_placeholder.classList.add('article-part-button')
-
+        //const button_placeholder = document.createElement("div")
+        //button_placeholder.classList.add('article-part-button')
+        //const upload_button = document.createElement("button")
+        //upload_button.classList.add('btn', 'upload')
+        //const upload_button2 = document.createTextNode("Upload Attachment");
+        //upload_button.innerHTML = "Upload Attachment"
+        //const manage_button = document.createElement("button")
+        //manage_button.classList.add('btn', 'manage')
+        //manage_button.innerHTML = "Manage Attachment"
+        //console.log(" Manage button dom :- ", manage_button)
+        //button_placeholder.appendChild(upload_button2)
+        //button_placeholder.appendChild(manage_button)
+        // console.log("  button plc dom :- ", button_placeholder)
+        // manage_button.addEventListener ("click", function() {
+        //     console.log("did something");
+        // });
+        // upload_button2.addEventListener ("click", function() {
+        //     console.log("did something");
+        // });
+        
         if (node.attrs.hidden) {
             this.dom.dataset.hidden = true
         }
@@ -64,9 +81,10 @@ export class PartViewDoubleDiv {
         } else {
             this.contentDOM = this.dom
         }
+
         this.contentDOM = this.dom.appendChild(button_placeholder)
 
-        console.log("DOM :- ", this.dom)
+        //console.log("DOM :- ", this.contentDOM)
 
 
     }
@@ -89,7 +107,7 @@ export const documentTemplatePlugin = function(options) {
                         view,
                         getPos
                     )
-                    this.spec.props.nodeViews['file_upload_part'] = (node, view, getPos) => new PartViewDoubleDiv(
+                    this.spec.props.nodeViews['file_upload_part'] = (node, view, getPos) => new PartView(
                         node,
                         view,
                         getPos

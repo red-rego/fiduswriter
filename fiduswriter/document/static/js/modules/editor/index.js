@@ -93,6 +93,7 @@ import {
 } from "../schema/convert"
 
 import {
+    attachmentPlugin,
     accessRightsPlugin,
     contributorInputPlugin,
     citationRenderPlugin,
@@ -190,6 +191,7 @@ export class Editor {
             [tagInputPlugin, () => ({editor: this})],
             [contributorInputPlugin, () => ({editor: this})],
             [clipboardPlugin, () => ({editor: this, viewType: 'main'})],
+            [attachmentPlugin, () => ({editor: this})],
             [accessRightsPlugin, () => ({editor: this})],
             [settingsPlugin, () => ({editor: this})],
             [documentTemplatePlugin, () => ({editor: this})],
