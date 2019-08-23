@@ -33,6 +33,7 @@ export class OdtExporterRender {
                     tag.content = textContent(node)
                     break
                 case 'table_part':
+                case 'file_upload_part':
                 case 'richtext_part':
                     tag.title = `@${node.attrs.id}`
                     tag.content = node.content

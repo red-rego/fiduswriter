@@ -73,6 +73,7 @@ export class JATSExporterConvert {
                         parentNode.content = parentNode.content.filter(child => child !== node)
                     }
                     break
+                case 'file_upload_part':
                 case 'richtext_part':
                     if (
                         node.attrs.metadata === 'abstract' &&
@@ -311,6 +312,7 @@ export class JATSExporterConvert {
                     end = '</trans-abstract>' + end
                 }
                 break
+            case 'file_upload_part':
             case 'richtext_part':
                 if (node.attrs.metadata) {
                     options = Object.assign({}, options)

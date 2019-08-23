@@ -55,6 +55,11 @@ export const documentTemplatePlugin = function(options) {
                         view,
                         getPos
                     )
+                    this.spec.props.nodeViews['file_upload_part'] = (node, view, getPos) => new PartView(
+                        node,
+                        view,
+                        getPos
+                    )
                     this.spec.props.nodeViews['heading_part'] = (node, view, getPos) => new PartView(
                         node,
                         view,

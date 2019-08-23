@@ -185,6 +185,7 @@ export class LatexExporterConvert {
             case 'tag':
                 // Ignore - we already took all the tags_part from the keywords node.
                 break
+            case 'file_upload_part':
             case 'richtext_part':
                 if (!options.madeTitle) {
                     start += '\n\n\\maketitle\n'
