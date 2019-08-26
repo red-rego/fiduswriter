@@ -307,7 +307,7 @@ export const manageFile = {
         }
     }],
     toDOM(node) {
-    */
+    
 /* Here we must have the dialog to upload attachment called */
 
         const dom = document.createElement('button')
