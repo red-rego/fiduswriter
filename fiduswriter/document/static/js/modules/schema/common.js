@@ -259,6 +259,69 @@ export const randomHeadingId = () => {
     return `H${Math.round(Math.random()*10000000) + 1}`
 }
 
+export const uploadFile = {
+    inline: true,
+    group: "inline",
+    attrs: {
+        file: {
+            default: ""
+        }
+    },
+    parseDOM: [{
+        tag: 'button.uploadFile',
+        getAttrs(dom) {
+            return {
+                file: dom.dataset.file
+            }
+        }
+    }],
+    toDOM(node) {
+
+/* Here we must have the dialog to upload attachment called */
+
+        const dom = document.createElement('button')
+        dom.innerHTML = "Upload File"
+        dom.dataset.file = node.attrs.file
+        dom.classList.add('uploadFile')
+
+        dom.setAttribute('contenteditable', 'false')
+        return dom
+    }
+}
+
+
+export const manageFile = {
+    inline: true,
+    group: "inline",
+    attrs: {
+        file: {
+            default: ""
+        }
+    },
+    parseDOM: [{
+        tag: 'button.uploadFile',
+        getAttrs(dom) {
+            return {
+                file: dom.dataset.file
+            }
+        }
+    }],
+    toDOM(node) {
+    */
+/* Here we must have the dialog to upload attachment called */
+
+        const dom = document.createElement('button')
+        dom.innerHTML = "Manage File"
+        dom.dataset.file = node.attrs.file
+        dom.classList.add('manageFile')
+
+        dom.setAttribute('contenteditable', 'false')
+        return dom
+    }
+}
+
+
+
 
 const createHeading = level => ({
     group: "block heading",
