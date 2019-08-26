@@ -14,7 +14,7 @@ export function extractTemplate(doc) {
             return
         } else if (part.attrs.initial) {
             part.content = JSON.parse(JSON.stringify(part.attrs.initial))
-        } else if (['heading_part', 'richtext_part'].includes(part.type)) {
+        } else if (['heading_part', 'richtext_part', 'file_upload_part'].includes(part.type)) {
             part.content = [{type: part.attrs.elements[0]}]
         } else if (part.type==='table') {
             part.content = [{type: 'table', content: [{type: 'table_row', content: [{type: 'table_cell', content: [{type: 'paragraph'}]}]}]}]

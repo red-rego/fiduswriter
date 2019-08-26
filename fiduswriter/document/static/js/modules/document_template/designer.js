@@ -27,6 +27,8 @@ import {
 import {
     helpSchema,
     helpMenuContent,
+    fileUploadPartSchema,
+    fileUploadMenuContent,
     richtextPartSchema,
     richtextMenuContent,
     tablePartSchema,
@@ -139,6 +141,7 @@ export class DocumentTemplateDesigner {
                             attrs.locking = locking
                         }
                         switch (type) {
+                            case 'file_upload_part':
                             case 'richtext_part':
                             case 'heading_part': {
                                 attrs.elements = Array.from(el.querySelectorAll('.elements:checked')).map(el => el.value)
@@ -304,6 +307,11 @@ export class DocumentTemplateDesigner {
         })]
         let menuContent = [], schema
         switch (type) {
+            case 'file_upload_part':
+                schema = fileUploadPartSchema
+                menuContent = fileUploadMenuContent
+                plugins.push(tableEditing())
+                break
             case 'richtext_part':
                 schema = richtextPartSchema
                 menuContent = richtextMenuContent

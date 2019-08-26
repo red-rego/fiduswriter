@@ -31,6 +31,7 @@ export class DocxExporterRender {
                     break
                 case 'table_part':
                 case 'richtext_part':
+                case 'file_upload_part':
                     tag.title = `@${node.attrs.id}`
                     tag.content = node.content
                     break
